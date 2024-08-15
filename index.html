@@ -572,30 +572,7 @@
 	});
   </script>
 
-<script>
-	const trailContainer = document.createElement('div');
-	trailContainer.className = 'trail-container';
-	document.body.appendChild(trailContainer);
   
-	const trail = [];
-	const trailLength = 20;
-  
-	for (let i = 0; i < trailLength; i++) {
-	  const dot = document.createElement('div');
-	  dot.className = 'trail-dot';
-	  trailContainer.appendChild(dot);
-	  trail.push(dot);
-	}
-  
-	document.addEventListener('mousemove', function(e) {
-	  trail.forEach((dot, index) => {
-		setTimeout(() => {
-		  dot.style.left = e.pageX + 'px';
-		  dot.style.top = e.pageY + 'px';
-		}, index * 10);
-	  });
-	});
-  </script>
 
   </body>
 </html>

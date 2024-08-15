@@ -112,46 +112,6 @@ p {
   }
 }
 
-.trail-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-.trail-dot {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: rgba(255, 165, 0, 0.7); /* Orange with some transparency */
-  transition: all 0.1s ease;
-}
-
-/* Make dots smaller as they trail */
-.trail-dot:nth-child(n+5) {
-  width: 8px;
-  height: 8px;
-}
-
-.trail-dot:nth-child(n+10) {
-  width: 6px;
-  height: 6px;
-}
-
-.trail-dot:nth-child(n+15) {
-  width: 4px;
-  height: 4px;
-}
-
-/* Hide the trail when hovering over clickable elements */
-a:hover ~ .trail-container,
-button:hover ~ .trail-container {
-  opacity: 0;
-}
 
 .cursor-circle {
   position: fixed;
