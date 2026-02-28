@@ -2,434 +2,702 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Raj N Mishra - Portfolio</title>
-	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raj N. Mishra — Systems Engineer & ML Enthusiast</title>
+    <meta name="description"
+        content="Portfolio of Raj Narayan Mishra — Systems Engineer at TCS, Machine Learning Enthusiast, and Full-Stack Developer based in Mumbai, India.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-	<!-- Navigation -->
-	<nav class="navbar" id="navbar">
-		<div class="container">
-			<a href="#home" class="logo">Raj N. Mishra</a>
-			<button class="nav-toggle" id="navToggle">
-				<span></span>
-				<span></span>
-				<span></span>
-			</button>
-			<ul class="nav-menu" id="navMenu">
-				<li><a href="#home" class="nav-link">Home</a></li>
-				<li><a href="#about" class="nav-link">About</a></li>
-				<li><a href="#education" class="nav-link">Education</a></li>
-				<li><a href="#work" class="nav-link">Work</a></li>
-				<li><a href="#skills" class="nav-link">Skills</a></li>
-				<li><a href="#projects" class="nav-link">Projects</a></li>
-				<li><a href="#contact" class="nav-link">Contact</a></li>
-			</ul>
-		</div>
-	</nav>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-ring"></div>
+            <span class="preloader-text">R</span>
+        </div>
+    </div>
 
-	<!-- Hero Section -->
-	<section id="home" class="hero">
-		<div class="hero-content">
-			<div class="hero-text">
-				<p class="subheading fade-in">Hello!</p>
-				<h1 class="fade-in-up">I'm <span class="highlight">Raj Narayan Mishra</span></h1>
-				<h2 class="fade-in-up delay-1">Enthusiastic explorer diving deep into the world of machine learning.
-				</h2>
-				<div class="hero-roles fade-in-up delay-2">
-					<span class="role">Web Developer</span>
-					<span class="role">App Developer</span>
-					<span class="role">ML Enthusiast</span>
-				</div>
-			</div>
-		</div>
-		<div class="scroll-indicator">
-			<div class="mouse"></div>
-		</div>
-	</section>
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
 
-	<!-- About Section -->
-	<section id="about" class="about section">
-		<div class="container">
-			<div class="about-grid">
-				<div class="about-image">
-					<div class="image-wrapper">
-						<img src="images/bg_1.png" alt="Raj Narayan Mishra">
-					</div>
-				</div>
-				<div class="about-content">
-					<h2 class="section-title">About Me</h2>
-					<ul class="about-info">
-						<li><strong>Name:</strong> Raj Narayan Mishra</li>
-						<li><strong>Address:</strong> Mumbai Maharashtra, India</li>
-						<li><strong>Zip code:</strong> 400083</li>
-						<li><strong>Email:</strong> rajnarayan8584@gmail.com</li>
-						<li><strong>Phone:</strong> +91 7007018217</li>
-					</ul>
-					<div class="stats">
-						<div class="stat-box">
-							<span class="stat-number" data-target="3">0</span>
-							<span class="stat-label">Projects Complete</span>
-						</div>
-					</div>
-					<a href="https://drive.google.com/file/d/1eGbVxk1EPg6dRDcSoftfWL_dx8kzB7Pb/view?usp=sharing"
-						class="btn btn-primary" target="_blank">View Resume</a>
-				</div>
-			</div>
-		</div>
-	</section>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo" id="navLogo">
+                <span class="logo-bracket">&lt;</span>Raj<span class="logo-dot">.</span>dev<span class="logo-bracket">/&gt;</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
+                <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+                <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-	<!-- Education Section -->
-	<section id="education" class="education section">
-		<div class="container">
-			<h2 class="section-title">Education</h2>
-			<div class="timeline">
-				<div class="timeline-item">
-					<div class="timeline-icon">
-						<img src="images/collage_logo.png" alt="Bharati Vidyapeeth">
-					</div>
-					<div class="timeline-content">
-						<span class="date">2020-2024</span>
-						<h3>Bachelor's Of Technology</h3>
-						<p>Bharati Vidyapeeth Deemed To Be University, Pune</p>
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="timeline-icon">
-						<img src="images/images.jpg" alt="Little Flower School">
-					</div>
-					<div class="timeline-content">
-						<span class="date">2018-2019</span>
-						<h3>Science (Maths)</h3>
-						<p>Little Flower School (12th)</p>
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="timeline-icon">
-						<img src="images/images.jpg" alt="Little Flower School">
-					</div>
-					<div class="timeline-content">
-						<span class="date">2016-2017</span>
-						<h3>Maths + Computer</h3>
-						<p>Little Flower School (10th)</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge reveal-up">
+                    <span class="badge-dot"></span>
+                    Available for opportunities
+                </div>
+                <h1 class="hero-title reveal-up">
+                    <span class="hero-greeting">Hello, I'm</span>
+                    <span class="hero-name">Raj Narayan<br>Mishra</span>
+                </h1>
+                <div class="hero-typewriter reveal-up" id="heroTypewriter">
+                    <span class="typewriter-prefix">I build</span>
+                    <span class="typewriter-text" id="typewriterText"></span>
+                    <span class="typewriter-cursor">|</span>
+                </div>
+                <p class="hero-description reveal-up">
+                    Systems Engineer at TCS • Enthusiastic explorer diving deep into Machine Learning, 
+                    Web Development, and everything in between.
+                </p>
+                <div class="hero-cta reveal-up">
+                    <a href="#projects" class="btn btn-primary" id="heroProjectsBtn">
+                        <span>View My Work</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-ghost" id="heroContactBtn">
+                        <span>Let's Talk</span>
+                    </a>
+                </div>
+                <div class="hero-socials reveal-up">
+                    <a href="https://github.com/raj-ravan" target="_blank" aria-label="GitHub" id="heroGithub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/raj-narayan-mishra/" target="_blank" aria-label="LinkedIn" id="heroLinkedin"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/_unsettled_spirit_/" target="_blank" aria-label="Instagram" id="heroInstagram"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:rajnarayan8584@gmail.com" aria-label="Email" id="heroEmail"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="hero-visual reveal-up">
+                <div class="hero-image-wrapper">
+                    <div class="hero-image-glow"></div>
+                    <div class="hero-image-border"></div>
+                    <img src="images/bg_1.png" alt="Raj Narayan Mishra" class="hero-image">
+                </div>
+                <div class="hero-floating-card card-1">
+                    <i class="fas fa-brain"></i>
+                    <span>ML Engineer</span>
+                </div>
+                <div class="hero-floating-card card-2">
+                    <i class="fas fa-code"></i>
+                    <span>Developer</span>
+                </div>
+                <div class="hero-floating-card card-3">
+                    <i class="fas fa-server"></i>
+                    <span>Systems Engineer</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" id="scrollIndicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Scroll Down</span>
+        </div>
+    </section>
 
-	<!-- Work Experience Section -->
-	<section id="work" class="work section">
-		<div class="container">
-			<h2 class="section-title">Work Experience</h2>
-			<p class="section-subtitle">Professional Journey</p>
-			<div class="timeline">
-				<div class="timeline-item">
-					<div class="timeline-icon">
-						<i class="fas fa-briefcase"></i>
-					</div>
-					<div class="timeline-content">
-						<span class="date">2024 - Present</span>
-						<h3>Systems Engineer</h3>
-						<p class="company">Tata Consultancy Services</p>
-						<p class="description">Working as an Integration Engineer on XML, Apache Camel and JBOSS FUSE.
-						</p>
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="timeline-icon">
-						<i class="fas fa-laptop-code"></i>
-					</div>
-					<div class="timeline-content">
-						<span class="date">2023 - 2024</span>
-						<h3>Freelance Developer</h3>
-						<p class="company">Self-Employed</p>
-						<p class="description">Worked on various web and mobile app development projects.
-							created mobile applications using Flutter.</p>
-					</div>
-				</div>
-				<div class="timeline-item">
-					<div class="timeline-icon">
-						<i class="fas fa-graduation-cap"></i>
-					</div>
-					<div class="timeline-content">
-						<span class="date">2023 (Summer)</span>
-						<h3>Machine Learning Engineer</h3>
-						<p class="company">Postulate Infotech</p>
-						<p class="description">Assisted in developing and training machine learning models for web-based
-							Transcribott using the Whisper AI model and
-							adding the changes to the neural layer network.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">01. About Me</span>
+                <h2 class="section-title">Get to know me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-image-col reveal-left">
+                    <div class="about-image-container">
+                        <div class="about-image-frame">
+                            <img src="images/bg_1.png" alt="Raj Narayan Mishra">
+                        </div>
+                        <div class="about-experience-badge">
+                            <span class="exp-number">2+</span>
+                            <span class="exp-text">Years<br>Experience</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-content-col reveal-right">
+                    <h3 class="about-subtitle">A passionate engineer who loves turning ideas into reality</h3>
+                    <p class="about-text">
+                        I'm a Systems Engineer at Tata Consultancy Services with a passion for machine learning and full-stack development. 
+                        With a B.Tech from Bharati Vidyapeeth University, I specialize in integration engineering with XML, 
+                        Apache Camel, and JBOSS FUSE, while continuously exploring the frontiers of AI and ML.
+                    </p>
+                    <p class="about-text">
+                        When I'm not coding integration pipelines, you'll find me training neural networks, building mobile apps with Flutter, 
+                        or contributing to open-source projects. I believe in the power of technology to solve real-world problems.
+                    </p>
+                    <div class="about-info-grid">
+                        <div class="about-info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <span class="info-label">Location</span>
+                                <span class="info-value">Mumbai, India</span>
+                            </div>
+                        </div>
+                        <div class="about-info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <span class="info-label">Email</span>
+                                <span class="info-value">rajnarayan8584@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="about-info-item">
+                            <i class="fas fa-building"></i>
+                            <div>
+                                <span class="info-label">Company</span>
+                                <span class="info-value">TCS</span>
+                            </div>
+                        </div>
+                        <div class="about-info-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <span class="info-label">Degree</span>
+                                <span class="info-value">B.Tech (2020-2024)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1eGbVxk1EPg6dRDcSoftfWL_dx8kzB7Pb/view?usp=sharing"
+                        class="btn btn-primary" target="_blank" id="resumeBtn">
+                        <i class="fas fa-download"></i>
+                        <span>Download Resume</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<!-- Skills Section -->
-	<section id="skills" class="skills section">
-		<div class="container">
-			<h2 class="section-title">My Skills</h2>
-			<p class="section-subtitle">Tech Stacks</p>
-			<div class="skills-grid">
-				<div class="skill-card">
-					<i class="fas fa-brain"></i>
-					<h3>Machine Learning</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fab fa-html5"></i>
-					<h3>HTML5</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fab fa-css3-alt"></i>
-					<h3>CSS3</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fab fa-python"></i>
-					<h3>Python</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fab fa-bitcoin"></i>
-					<h3>Blockchain</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fas fa-mobile-alt"></i>
-					<h3>Flutter/Dart</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fab fa-react"></i>
-					<h3>ReactJS</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fab fa-java"></i>
-					<h3>Java</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fab fa-github"></i>
-					<h3>GitHub</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fab fa-node-js"></i>
-					<h3>Node.js</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fas fa-code"></i>
-					<h3>C Programming</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fab fa-js"></i>
-					<h3>JavaScript</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fas fa-database"></i>
-					<h3>MongoDB</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fas fa-database"></i>
-					<h3>MySQL</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fas fa-chart-line"></i>
-					<h3>Kaggle</h3>
-				</div>
-				<div class="skill-card">
-					<i class="fab fa-android"></i>
-					<h3>Android</h3>
-				</div>
-			</div>
-		</div>
-	</section>
+    <!-- Experience & Education Section -->
+    <section id="experience" class="section experience">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">02. Journey</span>
+                <h2 class="section-title">Experience & Education</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="experience-tabs reveal-up">
+                <button class="tab-btn active" data-tab="work" id="tabWork">
+                    <i class="fas fa-briefcase"></i> Work
+                </button>
+                <button class="tab-btn" data-tab="education" id="tabEducation">
+                    <i class="fas fa-graduation-cap"></i> Education
+                </button>
+            </div>
+            <div class="experience-content">
+                <!-- Work Tab -->
+                <div class="tab-panel active" id="work">
+                    <div class="timeline">
+                        <div class="timeline-item reveal-up">
+                            <div class="timeline-marker">
+                                <div class="marker-dot"></div>
+                            </div>
+                            <div class="timeline-card">
+                                <div class="timeline-header">
+                                    <div>
+                                        <h3 class="timeline-title">Systems Engineer</h3>
+                                        <p class="timeline-company">Tata Consultancy Services</p>
+                                    </div>
+                                    <span class="timeline-date">2024 — Present</span>
+                                </div>
+                                <p class="timeline-desc">Working as an Integration Engineer on XML, Apache Camel and JBOSS FUSE. Building enterprise-level integration solutions for clients.</p>
+                                <div class="timeline-tags">
+                                    <span>Apache Camel</span>
+                                    <span>XML/XSLT</span>
+                                    <span>JBOSS FUSE</span>
+                                    <span>Java</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item reveal-up">
+                            <div class="timeline-marker">
+                                <div class="marker-dot"></div>
+                            </div>
+                            <div class="timeline-card">
+                                <div class="timeline-header">
+                                    <div>
+                                        <h3 class="timeline-title">Freelance Developer</h3>
+                                        <p class="timeline-company">Self-Employed</p>
+                                    </div>
+                                    <span class="timeline-date">2023 — 2024</span>
+                                </div>
+                                <p class="timeline-desc">Worked on various web and mobile app development projects. Created mobile applications using Flutter and delivered end-to-end solutions for clients.</p>
+                                <div class="timeline-tags">
+                                    <span>Flutter</span>
+                                    <span>Dart</span>
+                                    <span>React</span>
+                                    <span>Node.js</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item reveal-up">
+                            <div class="timeline-marker">
+                                <div class="marker-dot"></div>
+                            </div>
+                            <div class="timeline-card">
+                                <div class="timeline-header">
+                                    <div>
+                                        <h3 class="timeline-title">ML Engineer Intern</h3>
+                                        <p class="timeline-company">Postulate Infotech</p>
+                                    </div>
+                                    <span class="timeline-date">Summer 2023</span>
+                                </div>
+                                <p class="timeline-desc">Assisted in developing and training machine learning models for Transcribott using the Whisper AI model and adding changes to the neural layer network.</p>
+                                <div class="timeline-tags">
+                                    <span>Python</span>
+                                    <span>Whisper AI</span>
+                                    <span>TensorFlow</span>
+                                    <span>NLP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Education Tab -->
+                <div class="tab-panel" id="education">
+                    <div class="timeline">
+                        <div class="timeline-item reveal-up">
+                            <div class="timeline-marker">
+                                <div class="marker-dot"></div>
+                            </div>
+                            <div class="timeline-card">
+                                <div class="timeline-header">
+                                    <div>
+                                        <h3 class="timeline-title">Bachelor's of Technology</h3>
+                                        <p class="timeline-company">Bharati Vidyapeeth Deemed To Be University, Pune</p>
+                                    </div>
+                                    <span class="timeline-date">2020 — 2024</span>
+                                </div>
+                                <p class="timeline-desc">Computer Science & Engineering. Active participant in technical clubs, hackathons, and GFG Student Chapter.</p>
+                                <div class="timeline-tags">
+                                    <span>Computer Science</span>
+                                    <span>GFG Chapter</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item reveal-up">
+                            <div class="timeline-marker">
+                                <div class="marker-dot"></div>
+                            </div>
+                            <div class="timeline-card">
+                                <div class="timeline-header">
+                                    <div>
+                                        <h3 class="timeline-title">Higher Secondary — Science (Maths)</h3>
+                                        <p class="timeline-company">Little Flower School</p>
+                                    </div>
+                                    <span class="timeline-date">2018 — 2019</span>
+                                </div>
+                                <p class="timeline-desc">Completed 12th grade with Science stream specializing in Mathematics and Computer Science.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item reveal-up">
+                            <div class="timeline-marker">
+                                <div class="marker-dot"></div>
+                            </div>
+                            <div class="timeline-card">
+                                <div class="timeline-header">
+                                    <div>
+                                        <h3 class="timeline-title">Secondary — Maths + Computer</h3>
+                                        <p class="timeline-company">Little Flower School</p>
+                                    </div>
+                                    <span class="timeline-date">2016 — 2017</span>
+                                </div>
+                                <p class="timeline-desc">Completed 10th grade with strong foundation in Mathematics and Computer Science.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<!-- Projects Section -->
-	<section id="projects" class="projects section">
-		<div class="container">
-			<h2 class="section-title">Projects</h2>
-			<p class="section-subtitle">College And Freelancing Projects</p>
-			<div class="projects-grid">
-				<div class="project-card">
-					<div class="project-image">
-						<img src="images/project-4.jpg" alt="Hospital Appointee">
-						<div class="project-overlay">
-							<a href="https://github.com/raj-ravan/Team-Appointee" target="_blank"
-								class="btn btn-primary">View Project</a>
-						</div>
-					</div>
-					<div class="project-info">
-						<h3>Hospital Appointee</h3>
-						<span class="project-tag">Web Development</span>
-					</div>
-				</div>
-				<div class="project-card">
-					<div class="project-image">
-						<img src="images/project-5.jpg" alt="Instagram Clone">
-						<div class="project-overlay">
-							<a href="https://github.com/raj-ravan/Instagram_Clone_jetpackCompose" target="_blank"
-								class="btn btn-primary">View Project</a>
-						</div>
-					</div>
-					<div class="project-info">
-						<h3>Instagram Clone</h3>
-						<span class="project-tag">Android Development</span>
-					</div>
-				</div>
-				<div class="project-card">
-					<div class="project-image">
-						<img src="images/project-1.jpg" alt="GFG Student Club">
-						<div class="project-overlay">
-							<a href="https://github.com/raj-ravan/GFG_SC_bvdudetnm" target="_blank"
-								class="btn btn-primary">View Project</a>
-						</div>
-					</div>
-					<div class="project-info">
-						<h3>GFG Student-Club Website</h3>
-						<span class="project-tag">Web Development</span>
-					</div>
-				</div>
-				<div class="project-card">
-					<div class="project-image">
-						<img src="images/project-6.jpg" alt="Transcribott">
-						<div class="project-overlay">
-							<a href="https://github.com/Transcribott" target="_blank" class="btn btn-primary">View
-								Project</a>
-						</div>
-					</div>
-					<div class="project-info">
-						<h3>Transcribott & Speech to Text</h3>
-						<span class="project-tag">Machine Learning</span>
-					</div>
-				</div>
-				<div class="project-card">
-					<div class="project-image">
-						<img src="images/project-2.jpg" alt="ML Projects">
-						<div class="project-overlay">
-							<a href="https://github.com/raj-ravan/ml-projects" target="_blank"
-								class="btn btn-primary">View Project</a>
-						</div>
-					</div>
-					<div class="project-info">
-						<h3>Machine Learning Projects</h3>
-						<span class="project-tag">Machine Learning</span>
-					</div>
-				</div>
-				<div class="project-card">
-					<div class="project-image">
-						<img src="images/project-7.jpg" alt="Documents Ledger">
-						<div class="project-overlay">
-							<a href="#" class="btn btn-primary">View Project</a>
-						</div>
-					</div>
-					<div class="project-info">
-						<h3>Distributed Documents Ledger</h3>
-						<span class="project-tag">Blockchain</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">03. Skills</span>
+                <h2 class="section-title">My Tech Stack</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-categories">
+                <div class="skill-category reveal-up">
+                    <h3 class="category-title">
+                        <i class="fas fa-brain"></i>
+                        AI & Machine Learning
+                    </h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-python"></i></div>
+                            <span>Python</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-robot"></i></div>
+                            <span>TensorFlow</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+                            <span>Kaggle</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                            <span>Deep Learning</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category reveal-up">
+                    <h3 class="category-title">
+                        <i class="fas fa-code"></i>
+                        Frontend Development
+                    </h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-js"></i></div>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-react"></i></div>
+                            <span>ReactJS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category reveal-up">
+                    <h3 class="category-title">
+                        <i class="fas fa-server"></i>
+                        Backend & Tools
+                    </h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-node-js"></i></div>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-java"></i></div>
+                            <span>Java</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-database"></i></div>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-database"></i></div>
+                            <span>MySQL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category reveal-up">
+                    <h3 class="category-title">
+                        <i class="fas fa-mobile-alt"></i>
+                        Mobile & Other
+                    </h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-mobile-screen-button"></i></div>
+                            <span>Flutter</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-android"></i></div>
+                            <span>Android</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-bitcoin"></i></div>
+                            <span>Blockchain</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-github"></i></div>
+                            <span>GitHub</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<!-- Hire Me Banner -->
-	<section class="hire-banner">
-		<div class="container">
-			<h2>I'm <span class="highlight">Available</span> for freelancing</h2>
-			<a href="#contact" class="btn btn-primary btn-lg">Hire me</a>
-		</div>
-	</section>
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">04. Projects</span>
+                <h2 class="section-title">Featured Work</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card featured reveal-up" id="projectHospital">
+                    <div class="project-image">
+                        <img src="images/project-4.jpg" alt="Hospital Appointee">
+                        <div class="project-overlay">
+                            <a href="https://github.com/raj-ravan/Team-Appointee" target="_blank" class="project-link" aria-label="View Hospital Appointee Project">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Web Development</span>
+                        <h3 class="project-title">Hospital Appointee</h3>
+                        <p class="project-desc">Full-stack hospital appointment booking system with role-based access, real-time scheduling, and patient management.</p>
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card reveal-up" id="projectInstagram">
+                    <div class="project-image">
+                        <img src="images/project-5.jpg" alt="Instagram Clone">
+                        <div class="project-overlay">
+                            <a href="https://github.com/raj-ravan/Instagram_Clone_jetpackCompose" target="_blank" class="project-link" aria-label="View Instagram Clone Project">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Android Development</span>
+                        <h3 class="project-title">Instagram Clone</h3>
+                        <p class="project-desc">Pixel-perfect Instagram clone built with Jetpack Compose and modern Android architecture.</p>
+                        <div class="project-tech">
+                            <span>Kotlin</span>
+                            <span>Jetpack Compose</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card reveal-up" id="projectGFG">
+                    <div class="project-image">
+                        <img src="images/project-1.jpg" alt="GFG Student Club">
+                        <div class="project-overlay">
+                            <a href="https://github.com/raj-ravan/GFG_SC_bvdudetnm" target="_blank" class="project-link" aria-label="View GFG Student Club Project">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Web Development</span>
+                        <h3 class="project-title">GFG Student Club</h3>
+                        <p class="project-desc">Official website for the GeeksforGeeks Student Chapter at Bharati Vidyapeeth University.</p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card reveal-up" id="projectTranscribott">
+                    <div class="project-image">
+                        <img src="images/project-6.jpg" alt="Transcribott">
+                        <div class="project-overlay">
+                            <a href="https://github.com/Transcribott" target="_blank" class="project-link" aria-label="View Transcribott Project">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Machine Learning</span>
+                        <h3 class="project-title">Transcribott — Speech to Text</h3>
+                        <p class="project-desc">AI-powered speech-to-text transcription tool using OpenAI's Whisper model.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Whisper AI</span>
+                            <span>NLP</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card reveal-up" id="projectML">
+                    <div class="project-image">
+                        <img src="images/project-2.jpg" alt="ML Projects">
+                        <div class="project-overlay">
+                            <a href="https://github.com/raj-ravan/ml-projects" target="_blank" class="project-link" aria-label="View ML Projects">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Machine Learning</span>
+                        <h3 class="project-title">Machine Learning Projects</h3>
+                        <p class="project-desc">Collection of ML projects ranging from data analysis to deep learning model implementations.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Scikit-learn</span>
+                            <span>TensorFlow</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card reveal-up" id="projectBlockchain">
+                    <div class="project-image">
+                        <img src="images/project-7.jpg" alt="Documents Ledger">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" aria-label="View Distributed Documents Ledger Project">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Blockchain</span>
+                        <h3 class="project-title">Distributed Documents Ledger</h3>
+                        <p class="project-desc">Decentralized document verification system built on blockchain technology.</p>
+                        <div class="project-tech">
+                            <span>Solidity</span>
+                            <span>Web3</span>
+                            <span>Blockchain</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<!-- Contact Section -->
-	<section id="contact" class="contact section">
-		<div class="container">
-			<h2 class="section-title">Contact Me</h2>
-			<div class="contact-grid">
-				<div class="contact-info">
-					<div class="info-card">
-						<i class="fas fa-map-marker-alt"></i>
-						<h3>Address</h3>
-						<p>Mumbai Maharashtra, India - 400083</p>
-					</div>
-					<div class="info-card">
-						<i class="fas fa-phone"></i>
-						<h3>Contact Number</h3>
-						<p><a href="tel:+917007018217">+91 7007018217</a></p>
-					</div>
-					<div class="info-card">
-						<i class="fas fa-envelope"></i>
-						<h3>Email Address</h3>
-						<p><a href="mailto:rajnarayan8584@gmail.com">rajnarayan8584@gmail.com</a></p>
-					</div>
-					<div class="info-card">
-						<i class="fab fa-linkedin"></i>
-						<h3>LinkedIn</h3>
-						<p><a href="https://www.linkedin.com/in/raj-narayan-mishra/" target="_blank">Connect on
-								LinkedIn</a></p>
-					</div>
-				</div>
-				<div class="contact-form-wrapper">
-					<form id="contactForm" class="contact-form">
-						<div class="form-group">
-							<input type="text" id="name" placeholder="Your Name" required>
-						</div>
-						<div class="form-group">
-							<input type="email" id="email" placeholder="Your Email" required>
-						</div>
-						<div class="form-group">
-							<input type="text" id="subject" placeholder="Subject" required>
-						</div>
-						<div class="form-group">
-							<textarea id="message" rows="5" placeholder="Message" required></textarea>
-						</div>
-						<button type="submit" class="btn btn-primary btn-lg">Send Message</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</section>
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">05. Contact</span>
+                <h2 class="section-title">Let's Work Together</h2>
+                <div class="section-line"></div>
+                <p class="section-desc">Have a project in mind or want to collaborate? Feel free to reach out!</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info-col reveal-left">
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h3>Email</h3>
+                            <a href="mailto:rajnarayan8584@gmail.com">rajnarayan8584@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h3>Phone</h3>
+                            <a href="tel:+917007018217">+91 7007018217</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h3>Location</h3>
+                            <p>Mumbai, Maharashtra, India — 400083</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="contact-card-content">
+                            <h3>LinkedIn</h3>
+                            <a href="https://www.linkedin.com/in/raj-narayan-mishra/" target="_blank">Connect with me</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-col reveal-right">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactName">Name</label>
+                                <input type="text" id="contactName" name="name" placeholder="Your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Email</label>
+                                <input type="email" id="contactEmail" name="email" placeholder="Your email address" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Subject</label>
+                            <input type="text" id="contactSubject" name="subject" placeholder="What's this about?" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" id="contactSubmitBtn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<!-- Footer -->
-	<footer class="footer">
-		<div class="container">
-			<div class="footer-content">
-				<div class="footer-section">
-					<h3>About</h3>
-					<p>I'm Raj Narayan Mishra, a passionate and dedicated individual exploring the realms of machine
-						learning and web development. With a knack for problem-solving and a love for innovation, I
-						strive to merge creativity with technology.</p>
-				</div>
-				<div class="footer-section">
-					<h3>Quick Links</h3>
-					<ul>
-						<li><a href="#home">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#projects">Projects</a></li>
-						<li><a href="#contact">Contact</a></li>
-					</ul>
-				</div>
-				<div class="footer-section">
-					<h3>Connect With Me</h3>
-					<div class="social-links">
-						<a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-						<a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-						<a href="https://www.instagram.com/_unsettled_spirit_/" target="_blank"
-							aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-						<a href="https://www.linkedin.com/in/raj-narayan-mishra/" target="_blank"
-							aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-						<a href="https://github.com/raj-ravan" target="_blank" aria-label="GitHub"><i
-								class="fab fa-github"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom">
-				<p>&copy; <span id="year"></span> All rights reserved | Made by Raj Narayan Mishra</p>
-			</div>
-		</div>
-	</footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#home" class="footer-logo">
+                        <span class="logo-bracket">&lt;</span>Raj<span class="logo-dot">.</span>dev<span class="logo-bracket">/&gt;</span>
+                    </a>
+                    <p>Turning ideas into elegant digital experiences through code, design, and machine learning.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Find Me On</h4>
+                    <div class="footer-social-links">
+                        <a href="https://github.com/raj-ravan" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/raj-narayan-mishra/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/_unsettled_spirit_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="footerYear"></span> Raj Narayan Mishra. Crafted with <i class="fas fa-heart"></i> and lots of ☕</p>
+            </div>
+        </div>
+    </footer>
 
-	<!-- Custom Cursor -->
-	<div class="cursor-dot"></div>
-	<div class="cursor-outline"></div>
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-	<script src="script.js"></script>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
