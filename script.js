@@ -1,9 +1,85 @@
 // ==================== PRELOADER ====================
 window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.getElementById('preloader').classList.add('hidden');
-    }, 800);
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        setTimeout(() => {
+            preloader.classList.add('hidden');
+            preloader.style.display = 'none';
+        }, 800);
+    }
 });
+
+// Fallback: Hide preloader after 3 seconds if page doesn't load
+setTimeout(() => {
+    const preloader = document.getElementById('preloader');
+    if (preloader && !preloader.classList.contains('hidden')) {
+        preloader.classList.add('hidden');
+        preloader.style.display = 'none';
+    }
+}, 3000);
+
+// ==================== DARK MODE ====================
+const themeToggle = document.getElementById('themeToggle');
+const htmlElement = document.documentElement;
+
+// Check for saved theme preference, system preference, or default to 'light'
+function getInitialTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        return savedTheme;
+    }
+    
+    // Check system preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+    }
+    
+    return 'light';
+}
+
+const initialTheme = getInitialTheme();
+htmlElement.setAttribute('data-theme', initialTheme);
+
+// Function to toggle theme
+function toggleTheme() {
+    const currentTheme = htmlElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    htmlElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    // Add a subtle animation effect
+    themeToggle.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+        themeToggle.style.transform = 'scale(1)';
+    }, 150);
+    
+    // Show toast notification
+    const themeMessage = newTheme === 'dark' ? '🌙 Dark mode enabled' : '☀️ Light mode enabled';
+    showToast(themeMessage);
+}
+
+// Toggle theme on button click
+themeToggle.addEventListener('click', toggleTheme);
+
+// Keyboard shortcut: Ctrl/Cmd + Shift + D to toggle dark mode
+document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'D') {
+        e.preventDefault();
+        toggleTheme();
+    }
+});
+
+// Listen for system theme changes
+if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // Only auto-switch if user hasn't manually set a preference
+        if (!localStorage.getItem('theme')) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            htmlElement.setAttribute('data-theme', newTheme);
+        }
+    });
+}
 
 // ==================== PARTICLE SYSTEM ====================
 const canvas = document.getElementById('particleCanvas');
@@ -111,7 +187,28 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         e.preventDefault();
         const t = document.querySelector(a.getAttribute('href'));
         if (t) {
-            t.scrollIntoView({ behavior: 'smooth' });
+            const targetPosition = t.offsetTop - 80;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = 1000;
+            let start = null;
+            
+            function animation(currentTime) {
+                if (start === null) start = currentTime;
+                const timeElapsed = currentTime - start;
+                const run = easeInOutCubic(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+            
+            function easeInOutCubic(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t * t + b;
+                t -= 2;
+                return c / 2 * (t * t * t + 2) + b;
+            }
+            
+            requestAnimationFrame(animation);
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
         }
@@ -160,10 +257,71 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 
 // ==================== SCROLL REVEAL ====================
 const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
+    entries.forEach((e, index) => { 
+        if (e.isIntersecting) {
+            setTimeout(() => {
+                e.target.classList.add('revealed');
+            }, index * 100); // Stagger effect
+        }
+    });
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
 document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
+
+// ==================== MAGNETIC BUTTONS ====================
+if (window.innerWidth > 768) {
+    const magneticButtons = document.querySelectorAll('.btn, .hero-socials a, .project-link');
+    
+    magneticButtons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0)';
+        });
+    });
+}
+
+// ==================== PARALLAX EFFECT ====================
+let ticking = false;
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset;
+            
+            // Parallax for hero elements
+            const heroContent = document.querySelector('.hero-content');
+            const heroVisual = document.querySelector('.hero-visual');
+            const shapes = document.querySelectorAll('.shape');
+            
+            if (heroContent && scrolled < window.innerHeight) {
+                heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+                heroContent.style.opacity = 1 - (scrolled / 600);
+            }
+            
+            if (heroVisual && scrolled < window.innerHeight) {
+                heroVisual.style.transform = `translateY(${scrolled * 0.2}px)`;
+            }
+            
+            shapes.forEach((shape, index) => {
+                if (scrolled < window.innerHeight) {
+                    const speed = 0.1 + (index * 0.05);
+                    shape.style.transform = `translateY(${scrolled * speed}px)`;
+                }
+            });
+            
+            ticking = false;
+        });
+        
+        ticking = true;
+    }
+});
 
 // ==================== CONTACT FORM ====================
 document.getElementById('contactForm').addEventListener('submit', e => {
@@ -189,7 +347,29 @@ function showToast(msg) {
 
 // ==================== BACK TO TOP ====================
 document.getElementById('backToTop').addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ 
+        top: 0, 
+        behavior: 'smooth' 
+    });
+});
+
+// Enhanced back to top button behavior near footer
+window.addEventListener('scroll', () => {
+    const backToTop = document.getElementById('backToTop');
+    const footer = document.querySelector('.footer');
+    
+    if (footer && backToTop) {
+        const footerTop = footer.offsetTop;
+        const scrollY = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        
+        // Change button style when near footer
+        if (scrollY + windowHeight > footerTop + 100) {
+            backToTop.style.background = 'var(--clr-accent)';
+        } else {
+            backToTop.style.background = 'var(--grad-primary)';
+        }
+    }
 });
 
 // ==================== CREATIVE CURSOR WITH TRAIL ====================
@@ -253,4 +433,206 @@ if (window.innerWidth > 968) {
 // ==================== FOOTER YEAR ====================
 document.getElementById('footerYear').textContent = new Date().getFullYear();
 
-console.log('✨ Portfolio loaded successfully!');
+// ==================== FOOTER ANIMATIONS ====================
+// Animate footer elements on scroll into view
+const footerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('footer-visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+const footer = document.querySelector('.footer');
+if (footer) {
+    footerObserver.observe(footer);
+}
+
+// Add sparkle effect to footer on scroll
+let lastScrollY = window.pageYOffset;
+window.addEventListener('scroll', () => {
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        const footerTop = footer.offsetTop;
+        const scrollY = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        
+        if (scrollY + windowHeight > footerTop) {
+            footer.style.opacity = '1';
+        }
+    }
+});
+
+// Add interactive hover effect to footer links
+document.querySelectorAll('.footer-links a').forEach(link => {
+    link.addEventListener('mouseenter', function() {
+        this.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    });
+});
+
+// ==================== MOBILE DETECTION & OPTIMIZATION ====================
+const isMobile = window.innerWidth <= 768;
+const isSmallMobile = window.innerWidth <= 480;
+
+// Disable 3D tilt on mobile
+if (!isMobile) {
+    const tiltCards = document.querySelectorAll('.project-card, .skill-category, .timeline-card');
+    
+    tiltCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        });
+    });
+}
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    const newWidth = window.innerWidth;
+    if ((newWidth <= 768 && !isMobile) || (newWidth > 768 && isMobile)) {
+        location.reload();
+    }
+});
+
+// ==================== ANIMATED COUNTER FOR EXPERIENCE BADGE ====================
+const observerOptions = {
+    threshold: 0.5,
+    rootMargin: '0px'
+};
+
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = parseInt(counter.getAttribute('data-target') || counter.textContent);
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = Math.ceil(current) + '+';
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target + '+';
+                }
+            };
+            
+            updateCounter();
+            counterObserver.unobserve(counter);
+        }
+    });
+}, observerOptions);
+
+const expNumber = document.querySelector('.exp-number');
+if (expNumber) {
+    expNumber.setAttribute('data-target', expNumber.textContent.replace('+', ''));
+    counterObserver.observe(expNumber);
+}
+
+// ==================== RIPPLE EFFECT ON BUTTONS ====================
+function createRipple(event) {
+    const button = event.currentTarget;
+    const ripple = document.createElement('span');
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+    
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    ripple.classList.add('ripple');
+    
+    button.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+}
+
+document.querySelectorAll('.btn, .tab-btn, .nav-link').forEach(btn => {
+    btn.style.position = 'relative';
+    btn.style.overflow = 'hidden';
+    btn.addEventListener('click', createRipple);
+});
+
+// ==================== TYPING SOUND EFFECT (OPTIONAL) ====================
+const typewriterElement = document.getElementById('typewriterText');
+let typingSoundEnabled = false; // Set to true if you want sound
+
+function playTypeSound() {
+    if (typingSoundEnabled) {
+        // Create a subtle click sound
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.value = 800;
+        oscillator.type = 'sine';
+        
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.05);
+    }
+}
+
+// ==================== ENHANCED PARTICLE INTERACTIONS ====================
+canvas.addEventListener('click', (e) => {
+    // Create burst effect on click
+    for (let i = 0; i < 5; i++) {
+        const particle = new Particle();
+        particle.x = e.clientX;
+        particle.y = e.clientY;
+        particle.speedX = (Math.random() - 0.5) * 3;
+        particle.speedY = (Math.random() - 0.5) * 3;
+        particle.size = Math.random() * 3 + 2;
+        particles.push(particle);
+    }
+    
+    // Remove extra particles after animation
+    setTimeout(() => {
+        particles.splice(particles.length - 5, 5);
+    }, 2000);
+});
+
+// ==================== SCROLL PROGRESS INDICATOR ====================
+const scrollProgress = document.createElement('div');
+scrollProgress.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6C5CE7, #A29BFE, #74B9FF);
+    z-index: 9999;
+    transition: width 0.1s ease;
+    width: 0;
+`;
+document.body.appendChild(scrollProgress);
+
+window.addEventListener('scroll', () => {
+    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (window.pageYOffset / windowHeight) * 100;
+    scrollProgress.style.width = scrolled + '%';
+});
+
+console.log('✨ Portfolio loaded successfully with enhanced animations!');
