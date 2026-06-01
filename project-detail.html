@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Case Study — Raj N. Mishra</title>
+    <meta name="description" content="In-depth project case study and technical breakdown by Raj Narayan Mishra, Systems Engineer & ML Enthusiast.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="project-detail.css">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-ring"></div>
+            <span class="preloader-text">R</span>
+        </div>
+    </div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo" id="navLogo">
+                <span class="logo-bracket">&lt;</span>Raj<span class="logo-dot">.</span>dev<span class="logo-bracket">/&gt;</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-arrow-left" style="margin-right: 6px;"></i> Back to Portfolio</a></li>
+                <li>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <div class="theme-toggle-slider">
+                            <i class="fas fa-sun theme-toggle-icon sun"></i>
+                            <i class="fas fa-moon theme-toggle-icon moon"></i>
+                        </div>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Case Study Section -->
+    <main class="case-study-container" style="padding-top: 120px;">
+        <div class="container">
+            
+            <!-- Back Button Link -->
+            <div class="back-link-wrapper reveal-up">
+                <a href="index.html#projects" class="back-to-grid-btn">
+                    <i class="fas fa-long-arrow-left"></i>
+                    <span>Back to Projects</span>
+                </a>
+            </div>
+
+            <!-- Case Study Hero -->
+            <section class="case-hero reveal-up">
+                <div class="hero-text-content">
+                    <span class="project-tag" id="dynamicCategory">Category Loading...</span>
+                    <h1 class="case-title" id="dynamicTitle">Project Title Loading...</h1>
+                    <p class="case-tagline" id="dynamicTagline">Tagline Loading...</p>
+                    
+                    <div class="project-meta-grid">
+                        <div class="meta-item">
+                            <span class="meta-label"><i class="far fa-calendar-alt"></i> Timeline</span>
+                            <span class="meta-val" id="dynamicTimeline">Loading...</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label"><i class="fas fa-user-tie"></i> Role</span>
+                            <span class="meta-val" id="dynamicRole">Loading...</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label"><i class="fas fa-laptop-code"></i> Tech Stack</span>
+                            <span class="meta-val" id="dynamicTechSummary">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual-wrapper">
+                    <div class="visual-glow"></div>
+                    <div class="visual-border-wrap">
+                        <img src="" alt="Project Presentation" class="visual-image" id="dynamicImage">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Case Details Grid -->
+            <div class="case-details-grid">
+                
+                <!-- Overview & Features (Left Column) -->
+                <div class="details-left reveal-left">
+                    
+                    <div class="detail-card overview-card">
+                        <h2 class="card-title-iconic"><i class="fas fa-circle-info"></i> Project Overview</h2>
+                        <div class="card-divider"></div>
+                        <p class="detail-body-text" id="dynamicOverview">Overview content loading...</p>
+                    </div>
+
+                    <div class="detail-card features-card">
+                        <h2 class="card-title-iconic"><i class="fas fa-star-half-stroke"></i> Key Features</h2>
+                        <div class="card-divider"></div>
+                        <ul class="features-list-grid" id="dynamicFeatures">
+                            <!-- Populated dynamically -->
+                        </ul>
+                    </div>
+
+                    <div class="detail-card tech-architecture-card">
+                        <h2 class="card-title-iconic"><i class="fas fa-cubes"></i> Tech Choices & Why</h2>
+                        <div class="card-divider"></div>
+                        <div class="tech-choices-grid" id="dynamicTechChoices">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Challenges, Learnings & CTA (Right Column) -->
+                <div class="details-right reveal-right">
+                    
+                    <div class="detail-card challenges-card">
+                        <h2 class="card-title-iconic"><i class="fas fa-triangle-exclamation"></i> Challenges & Solutions</h2>
+                        <div class="card-divider"></div>
+                        <div class="challenge-pair">
+                            <div class="pair-section challenge">
+                                <h3><span class="pair-tag ch">Challenge</span></h3>
+                                <p id="dynamicChallenge">Challenge loading...</p>
+                            </div>
+                            <div class="pair-section solution">
+                                <h3><span class="pair-tag sol">Solution</span></h3>
+                                <p id="dynamicSolution">Solution loading...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detail-card learnings-card">
+                        <h2 class="card-title-iconic"><i class="fas fa-graduation-cap"></i> Key Takeaways</h2>
+                        <div class="card-divider"></div>
+                        <p class="detail-body-text" id="dynamicLearnings">Learnings content loading...</p>
+                    </div>
+
+                    <!-- CTA Actions -->
+                    <div class="cta-actions-card">
+                        <h3 class="cta-heading">Explore the Project</h3>
+                        <div class="cta-buttons-wrapper">
+                            <a href="#" target="_blank" class="btn btn-primary" id="dynamicGithubLink">
+                                <i class="fab fa-github"></i>
+                                <span>Source Code</span>
+                            </a>
+                            <a href="#" target="_blank" class="btn btn-ghost" id="dynamicDemoLink">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Other Projects Recommendation Section -->
+            <section class="recommendations-sec reveal-up">
+                <div class="section-header">
+                    <span class="section-tag">Explore Case Studies</span>
+                    <h2 class="section-title">Other Featured Works</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="recommendations-grid" id="dynamicRecommendations">
+                    <!-- Populated dynamically -->
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-bracket">&lt;</span>Raj<span class="logo-dot">.</span>dev<span class="logo-bracket">/&gt;</span>
+                    </a>
+                    <p>Turning ideas into elegant digital experiences through code, design, and machine learning.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#experience">Experience</a></li>
+                        <li><a href="index.html#projects">Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Find Me On</h4>
+                    <div class="footer-social-links">
+                        <a href="https://github.com/raj-ravan" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/raj-narayan-mishra/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/_unsettled_spirit_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="footerYear"></span> Raj Narayan Mishra. Crafted with <i class="fas fa-heart"></i> and lots of ☕</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Core Scripts -->
+    <script src="project-detail.js"></script>
+</body>
+
+</html>
