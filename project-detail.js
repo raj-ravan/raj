@@ -190,7 +190,7 @@ function initializeCaseStudy() {
     document.getElementById('dynamicTimeline').textContent = project.timeline;
     document.getElementById('dynamicRole').textContent = project.role;
     document.getElementById('dynamicTechSummary').textContent = project.techSummary;
-    
+
     // Set Hero Image
     const imgEl = document.getElementById('dynamicImage');
     imgEl.src = project.image;
@@ -204,7 +204,7 @@ function initializeCaseStudy() {
     featuresList.innerHTML = '';
     project.features.forEach(feat => {
         const li = document.createElement('li');
-        
+
         // Split title and body for nice design
         const parts = feat.split(': ');
         if (parts.length > 1) {
@@ -255,7 +255,7 @@ function initializeCaseStudy() {
 
     // Populate Recommendations Section
     renderRecommendations(projectId);
-    
+
     // Page Title Update
     document.title = `${project.title} Case Study — Raj N. Mishra`;
 }
@@ -267,13 +267,13 @@ function renderRecommendations(currentId) {
 
     // Filter out the current project to find other choices
     const otherProjects = Object.values(PROJECT_DATA).filter(p => p.id !== currentId);
-    
+
     // Get up to 3 options
     const selections = otherProjects.slice(0, 3);
 
     selections.forEach((proj, idx) => {
         const card = document.createElement('div');
-        
+
         // Give the first one the 'featured' styling if we want variance
         card.className = `project-card reveal-up`;
         card.setAttribute('id', `project-${proj.id}`);
@@ -339,14 +339,14 @@ htmlElement.setAttribute('data-theme', initialTheme);
 function toggleTheme() {
     const currentTheme = htmlElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
+
     htmlElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
-    
+
     // Scale animation
     themeToggle.style.transform = 'scale(0.95)';
     setTimeout(() => { themeToggle.style.transform = 'scale(1)'; }, 150);
-    
+
     // Display Toast Notification
     const themeMessage = newTheme === 'dark' ? '🌙 Dark mode enabled' : '☀️ Light mode enabled';
     showToast(themeMessage);
@@ -486,7 +486,7 @@ if (window.innerWidth > 968) {
             });
         });
     }
-    
+
     // Bind after dynamic rendering completes
     setTimeout(bindCursorHovers, 400);
 }
@@ -531,7 +531,7 @@ document.getElementById('backToTop').addEventListener('click', () => {
 
 // Staggered Scroll Reveal observer
 const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((e, index) => { 
+    entries.forEach((e, index) => {
         if (e.isIntersecting) {
             setTimeout(() => {
                 e.target.classList.add('revealed');
@@ -564,12 +564,12 @@ function createRipple(event) {
     const size = Math.max(rect.width, rect.height);
     const x = event.clientX - rect.left - size / 2;
     const y = event.clientY - rect.top - size / 2;
-    
+
     ripple.style.width = ripple.style.height = size + 'px';
     ripple.style.left = x + 'px';
     ripple.style.top = y + 'px';
     ripple.classList.add('ripple');
-    
+
     button.appendChild(ripple);
     setTimeout(() => { ripple.remove(); }, 600);
 }
@@ -580,11 +580,11 @@ document.getElementById('footerYear').textContent = new Date().getFullYear();
 // Initialize all bindings & dynamic datasets
 document.addEventListener("DOMContentLoaded", () => {
     initializeCaseStudy();
-    
+
     // Bind Scroll reveals
     setTimeout(() => {
         document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
-        
+
         // Add ripple hooks
         document.querySelectorAll('.btn, .back-to-grid-btn').forEach(btn => {
             btn.style.position = 'relative';

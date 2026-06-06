@@ -28,12 +28,12 @@ function getInitialTheme() {
     if (savedTheme) {
         return savedTheme;
     }
-    
+
     // Check system preference
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         return 'dark';
     }
-    
+
     return 'light';
 }
 
@@ -44,16 +44,16 @@ htmlElement.setAttribute('data-theme', initialTheme);
 function toggleTheme() {
     const currentTheme = htmlElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
+
     htmlElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
-    
+
     // Add a subtle animation effect
     themeToggle.style.transform = 'scale(0.95)';
     setTimeout(() => {
         themeToggle.style.transform = 'scale(1)';
     }, 150);
-    
+
     // Show toast notification
     const themeMessage = newTheme === 'dark' ? '🌙 Dark mode enabled' : '☀️ Light mode enabled';
     showToast(themeMessage);
@@ -187,12 +187,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         e.preventDefault();
         const t = document.querySelector(a.getAttribute('href'));
         if (t) {
-            const targetPosition = t.offsetTop - 80;
+            const targetPosition = t.offsetTop - 20;
             const startPosition = window.pageYOffset;
             const distance = targetPosition - startPosition;
             const duration = 1000;
             let start = null;
-            
+
             function animation(currentTime) {
                 if (start === null) start = currentTime;
                 const timeElapsed = currentTime - start;
@@ -200,14 +200,14 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
                 window.scrollTo(0, run);
                 if (timeElapsed < duration) requestAnimationFrame(animation);
             }
-            
+
             function easeInOutCubic(t, b, c, d) {
                 t /= d / 2;
                 if (t < 1) return c / 2 * t * t * t + b;
                 t -= 2;
                 return c / 2 * (t * t * t + 2) + b;
             }
-            
+
             requestAnimationFrame(animation);
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
@@ -219,7 +219,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
 function setActive() {
-    const sy = window.scrollY + 120;
+    const sy = window.scrollY + 100;
     sections.forEach(s => {
         if (sy >= s.offsetTop && sy < s.offsetTop + s.offsetHeight) {
             navLinks.forEach(l => {
@@ -257,7 +257,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 
 // ==================== SCROLL REVEAL ====================
 const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((e, index) => { 
+    entries.forEach((e, index) => {
         if (e.isIntersecting) {
             setTimeout(() => {
                 e.target.classList.add('revealed');
@@ -271,16 +271,16 @@ document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach(el 
 // ==================== MAGNETIC BUTTONS ====================
 if (window.innerWidth > 768) {
     const magneticButtons = document.querySelectorAll('.btn, .hero-socials a, .project-link');
-    
+
     magneticButtons.forEach(btn => {
         btn.addEventListener('mousemove', (e) => {
             const rect = btn.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            
+
             btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
         });
-        
+
         btn.addEventListener('mouseleave', () => {
             btn.style.transform = 'translate(0, 0)';
         });
@@ -294,31 +294,31 @@ window.addEventListener('scroll', () => {
     if (!ticking) {
         window.requestAnimationFrame(() => {
             const scrolled = window.pageYOffset;
-            
+
             // Parallax for hero elements
             const heroContent = document.querySelector('.hero-content');
             const heroVisual = document.querySelector('.hero-visual');
             const shapes = document.querySelectorAll('.shape');
-            
+
             if (heroContent && scrolled < window.innerHeight) {
                 heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
                 heroContent.style.opacity = 1 - (scrolled / 600);
             }
-            
+
             if (heroVisual && scrolled < window.innerHeight) {
                 heroVisual.style.transform = `translateY(${scrolled * 0.2}px)`;
             }
-            
+
             shapes.forEach((shape, index) => {
                 if (scrolled < window.innerHeight) {
                     const speed = 0.1 + (index * 0.05);
                     shape.style.transform = `translateY(${scrolled * speed}px)`;
                 }
             });
-            
+
             ticking = false;
         });
-        
+
         ticking = true;
     }
 });
@@ -347,9 +347,9 @@ function showToast(msg) {
 
 // ==================== BACK TO TOP ====================
 document.getElementById('backToTop').addEventListener('click', () => {
-    window.scrollTo({ 
-        top: 0, 
-        behavior: 'smooth' 
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
     });
 });
 
@@ -357,12 +357,12 @@ document.getElementById('backToTop').addEventListener('click', () => {
 window.addEventListener('scroll', () => {
     const backToTop = document.getElementById('backToTop');
     const footer = document.querySelector('.footer');
-    
+
     if (footer && backToTop) {
         const footerTop = footer.offsetTop;
         const scrollY = window.pageYOffset;
         const windowHeight = window.innerHeight;
-        
+
         // Change button style when near footer
         if (scrollY + windowHeight > footerTop + 100) {
             backToTop.style.background = 'var(--clr-accent)';
@@ -456,7 +456,7 @@ window.addEventListener('scroll', () => {
         const footerTop = footer.offsetTop;
         const scrollY = window.pageYOffset;
         const windowHeight = window.innerHeight;
-        
+
         if (scrollY + windowHeight > footerTop) {
             footer.style.opacity = '1';
         }
@@ -465,7 +465,7 @@ window.addEventListener('scroll', () => {
 
 // Add interactive hover effect to footer links
 document.querySelectorAll('.footer-links a').forEach(link => {
-    link.addEventListener('mouseenter', function() {
+    link.addEventListener('mouseenter', function () {
         this.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
     });
 });
@@ -477,22 +477,22 @@ const isSmallMobile = window.innerWidth <= 480;
 // Disable 3D tilt on mobile
 if (!isMobile) {
     const tiltCards = document.querySelectorAll('.project-card, .skill-category, .timeline-card');
-    
+
     tiltCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
+
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            
+
             const rotateX = (y - centerY) / 20;
             const rotateY = (centerX - x) / 20;
-            
+
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
         });
-        
+
         card.addEventListener('mouseleave', () => {
             card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
         });
@@ -521,7 +521,7 @@ const counterObserver = new IntersectionObserver((entries) => {
             const duration = 2000;
             const increment = target / (duration / 16);
             let current = 0;
-            
+
             const updateCounter = () => {
                 current += increment;
                 if (current < target) {
@@ -531,7 +531,7 @@ const counterObserver = new IntersectionObserver((entries) => {
                     counter.textContent = target + '+';
                 }
             };
-            
+
             updateCounter();
             counterObserver.unobserve(counter);
         }
@@ -552,14 +552,14 @@ function createRipple(event) {
     const size = Math.max(rect.width, rect.height);
     const x = event.clientX - rect.left - size / 2;
     const y = event.clientY - rect.top - size / 2;
-    
+
     ripple.style.width = ripple.style.height = size + 'px';
     ripple.style.left = x + 'px';
     ripple.style.top = y + 'px';
     ripple.classList.add('ripple');
-    
+
     button.appendChild(ripple);
-    
+
     setTimeout(() => {
         ripple.remove();
     }, 600);
@@ -581,16 +581,16 @@ function playTypeSound() {
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
-        
+
         oscillator.connect(gainNode);
         gainNode.connect(audioContext.destination);
-        
+
         oscillator.frequency.value = 800;
         oscillator.type = 'sine';
-        
+
         gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
-        
+
         oscillator.start(audioContext.currentTime);
         oscillator.stop(audioContext.currentTime + 0.05);
     }
@@ -608,7 +608,7 @@ canvas.addEventListener('click', (e) => {
         particle.size = Math.random() * 3 + 2;
         particles.push(particle);
     }
-    
+
     // Remove extra particles after animation
     setTimeout(() => {
         particles.splice(particles.length - 5, 5);

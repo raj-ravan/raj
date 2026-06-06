@@ -62,7 +62,8 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: var(--nav-height);
+    scroll-padding-top: 20px;
+    scroll-padding-bottom: 120px;
 }
 
 body {
@@ -162,19 +163,25 @@ button {
 }
 
 @keyframes preloaderPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.05);
     }
 }
 
 @keyframes textGlow {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
         filter: brightness(1);
     }
+
     50% {
         opacity: 0.8;
         filter: brightness(1.3);
@@ -197,22 +204,34 @@ button {
 /* Nav */
 .navbar {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    bottom: 20px;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: var(--container-max);
     z-index: 1000;
     height: var(--nav-height);
     display: flex;
     align-items: center;
     transition: all .4s var(--ease);
-    background: transparent
+    background: rgba(250, 251, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
 }
 
 .navbar.scrolled {
     background: rgba(250, 251, 255, .92);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--clr-border);
-    box-shadow: var(--shadow-sm)
+    border-color: var(--clr-border-hover);
+    box-shadow: var(--shadow-lg)
+}
+
+[data-theme="dark"] .navbar {
+    background: rgba(15, 15, 30, 0.85);
+    border-color: var(--clr-border);
 }
 
 [data-theme="dark"] .navbar.scrolled {
@@ -550,7 +569,7 @@ button {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
     opacity: 0;
     transition: opacity 0.3s;
 }
@@ -615,9 +634,11 @@ button {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }
@@ -1323,7 +1344,7 @@ button {
     opacity: 0.03;
 }
 
-.project-card > * {
+.project-card>* {
     position: relative;
     z-index: 1;
 }
@@ -1552,7 +1573,7 @@ button {
 .footer {
     background: var(--clr-text);
     border-top: 1px solid var(--clr-border);
-    padding: 60px 0 0;
+    padding: 60px 0 120px;
     position: relative;
     z-index: 1;
     color: rgba(255, 255, 255, .7);
@@ -1733,13 +1754,19 @@ button {
 }
 
 @keyframes heartBeat {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
-    10%, 30% {
+
+    10%,
+    30% {
         transform: scale(1.1);
     }
-    20%, 40% {
+
+    20%,
+    40% {
         transform: scale(1);
     }
 }
@@ -1748,6 +1775,7 @@ button {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -1756,7 +1784,7 @@ button {
 /* Back to Top */
 .back-to-top {
     position: fixed;
-    bottom: 30px;
+    bottom: 110px;
     right: 30px;
     width: 48px;
     height: 48px;
@@ -1962,17 +1990,17 @@ button {
         grid-template-columns: 1fr;
         gap: 40px;
     }
-    
+
     .footer-brand p {
         max-width: 100%;
     }
-    
+
     .footer-links ul {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
-    
+
     .footer-social-links {
         justify-content: flex-start;
     }
@@ -1985,18 +2013,23 @@ button {
 
     .nav-menu {
         position: fixed;
-        top: 0;
+        bottom: calc(var(--nav-height) + 30px);
+        top: auto;
         right: -100%;
         width: 280px;
-        height: 100vh;
+        height: auto;
+        max-height: 70vh;
         background: rgba(250, 251, 255, .98);
         backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
         flex-direction: column;
         justify-content: center;
         gap: 8px;
-        padding: 40px;
+        padding: 30px;
         transition: right .5s var(--ease);
-        border-left: 1px solid var(--clr-border)
+        border: 1px solid var(--clr-border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
     }
 
     [data-theme="dark"] .nav-menu {
@@ -2004,14 +2037,14 @@ button {
     }
 
     .nav-menu.active {
-        right: 0
+        right: 20px;
     }
 
     .nav-link {
         font-size: 1.1rem;
         padding: 12px 16px
     }
-    
+
     .theme-toggle {
         margin-top: 20px;
     }
@@ -2271,7 +2304,7 @@ button {
 
     /* Footer */
     .footer {
-        padding: 50px 0 0;
+        padding: 50px 0 110px;
     }
 
     .footer::before {
@@ -2322,14 +2355,14 @@ button {
     .back-to-top {
         width: 44px;
         height: 44px;
-        bottom: 20px;
+        bottom: 100px;
         right: 20px;
         font-size: 1rem;
     }
 
     /* Toast */
     .toast-container {
-        bottom: 20px;
+        bottom: 100px;
         right: 20px;
         left: 20px;
     }
@@ -2391,9 +2424,13 @@ button {
     }
 
     .nav-menu {
-        width: 100%;
+        width: calc(100% - 20px);
         right: -100%;
-        padding: 30px;
+        padding: 24px;
+    }
+
+    .nav-menu.active {
+        right: 10px;
     }
 
     .nav-link {
@@ -2512,7 +2549,7 @@ button {
 /* ==================== BACK TO TOP ==================== */
 .back-to-top {
     position: fixed;
-    bottom: 30px;
+    bottom: 110px;
     right: 30px;
     width: 48px;
     height: 48px;
@@ -2545,7 +2582,7 @@ button {
 /* ==================== TOAST ==================== */
 .toast-container {
     position: fixed;
-    bottom: 30px;
+    bottom: 110px;
     right: 30px;
     z-index: 10000;
     display: flex;
@@ -2706,9 +2743,9 @@ button {
 *,
 *::before,
 *::after {
-    transition: background-color 0.3s var(--ease), 
-                border-color 0.3s var(--ease), 
-                box-shadow 0.3s var(--ease);
+    transition: background-color 0.3s var(--ease),
+        border-color 0.3s var(--ease),
+        box-shadow 0.3s var(--ease);
 }
 
 /* Preserve specific animations */
@@ -2781,12 +2818,12 @@ button {
         width: 50px;
         height: 26px;
     }
-    
+
     .theme-toggle-slider {
         width: 18px;
         height: 18px;
     }
-    
+
     [data-theme="dark"] .theme-toggle-slider {
         transform: translateX(24px);
     }
@@ -2796,12 +2833,29 @@ button {
 /* ==================== ENHANCED ANIMATIONS ==================== */
 
 /* Stagger Animation for Cards */
-.project-card:nth-child(1) { animation-delay: 0.1s; }
-.project-card:nth-child(2) { animation-delay: 0.2s; }
-.project-card:nth-child(3) { animation-delay: 0.3s; }
-.project-card:nth-child(4) { animation-delay: 0.4s; }
-.project-card:nth-child(5) { animation-delay: 0.5s; }
-.project-card:nth-child(6) { animation-delay: 0.6s; }
+.project-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.project-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.project-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.project-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.project-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.project-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
 
 /* Parallax Hero Effect */
 .hero-content {
@@ -2817,6 +2871,7 @@ button {
         opacity: 0;
         transform: translateY(60px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -2828,6 +2883,7 @@ button {
         opacity: 0;
         transform: translateX(60px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -2836,12 +2892,10 @@ button {
 
 /* Text Shimmer Effect */
 .hero-name {
-    background: linear-gradient(
-        90deg,
-        var(--clr-text) 0%,
-        var(--clr-primary) 50%,
-        var(--clr-text) 100%
-    );
+    background: linear-gradient(90deg,
+            var(--clr-text) 0%,
+            var(--clr-primary) 50%,
+            var(--clr-text) 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -2873,15 +2927,20 @@ button {
 }
 
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0px) rotate(0deg);
     }
+
     25% {
         transform: translateY(-15px) rotate(1deg);
     }
+
     50% {
         transform: translateY(-10px) rotate(-1deg);
     }
+
     75% {
         transform: translateY(-20px) rotate(0.5deg);
     }
@@ -2901,15 +2960,20 @@ button {
 }
 
 @keyframes iconBounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1) rotate(0deg);
     }
+
     25% {
         transform: scale(1.2) rotate(-10deg);
     }
+
     50% {
         transform: scale(1.1) rotate(10deg);
     }
+
     75% {
         transform: scale(1.15) rotate(-5deg);
     }
@@ -2930,9 +2994,12 @@ button {
 }
 
 @keyframes titlePulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.05);
     }
@@ -2970,9 +3037,11 @@ button {
     0% {
         transform: rotate(0deg) scale(1);
     }
+
     50% {
         transform: rotate(180deg) scale(1.2);
     }
+
     100% {
         transform: rotate(360deg) scale(1);
     }
@@ -3014,10 +3083,13 @@ button {
 }
 
 @keyframes badgePulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
         box-shadow: 0 0 0 0 rgba(108, 92, 231, 0.4);
     }
+
     50% {
         transform: scale(1.05);
         box-shadow: 0 0 0 10px rgba(108, 92, 231, 0);
@@ -3043,6 +3115,7 @@ button {
         opacity: 0;
         transform: translateX(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -3054,6 +3127,7 @@ button {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -3065,6 +3139,7 @@ button {
         width: 0;
         opacity: 0;
     }
+
     to {
         width: 60px;
         opacity: 1;
@@ -3094,6 +3169,7 @@ html {
         opacity: 0;
         transform: translateY(60px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -3105,6 +3181,7 @@ html {
         opacity: 0;
         transform: translateX(-60px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateX(0) scale(1);
@@ -3116,6 +3193,7 @@ html {
         opacity: 0;
         transform: translateX(60px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateX(0) scale(1);
@@ -3161,6 +3239,7 @@ html {
     0% {
         box-shadow: 0 0 0 0 rgba(108, 92, 231, 0.4);
     }
+
     100% {
         box-shadow: 0 0 0 8px rgba(108, 92, 231, 0);
     }
@@ -3192,9 +3271,11 @@ html {
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.1);
     }
+
     100% {
         transform: scale(1);
     }
@@ -3214,39 +3295,52 @@ html {
 }
 
 @keyframes shapeFloat1 {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translate(0, 0) scale(1) rotate(0deg);
     }
+
     33% {
         transform: translate(-50px, 50px) scale(1.1) rotate(120deg);
     }
+
     66% {
         transform: translate(30px, -30px) scale(0.9) rotate(240deg);
     }
 }
 
 @keyframes shapeFloat2 {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translate(0, 0) scale(1) rotate(0deg);
     }
+
     33% {
         transform: translate(40px, -50px) scale(1.15) rotate(-120deg);
     }
+
     66% {
         transform: translate(-30px, 40px) scale(0.85) rotate(-240deg);
     }
 }
 
 @keyframes shapeFloat3 {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translate(0, 0) scale(1) rotate(0deg);
     }
+
     25% {
         transform: translate(50px, -40px) scale(1.2) rotate(90deg);
     }
+
     50% {
         transform: translate(-40px, 50px) scale(0.9) rotate(180deg);
     }
+
     75% {
         transform: translate(30px, 30px) scale(1.1) rotate(270deg);
     }
@@ -3262,6 +3356,7 @@ img {
         opacity: 0;
         filter: blur(10px);
     }
+
     to {
         opacity: 1;
         filter: blur(0);
@@ -3304,14 +3399,14 @@ img {
 
 /* ==================== GLOW EFFECTS ==================== */
 .btn-primary:hover {
-    box-shadow: 
+    box-shadow:
         0 12px 40px rgba(108, 92, 231, .4),
         0 0 40px rgba(108, 92, 231, .3),
         inset 0 0 20px rgba(255, 255, 255, .2);
 }
 
 .project-card:hover {
-    box-shadow: 
+    box-shadow:
         0 25px 70px rgba(108, 92, 231, .25),
         0 0 50px rgba(108, 92, 231, .1);
 }
@@ -3327,9 +3422,12 @@ img {
 }
 
 @keyframes gradientShift {
-    0%, 100% {
+
+    0%,
+    100% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
@@ -3356,12 +3454,10 @@ img {
 
 /* ==================== LOADING SKELETON ==================== */
 .skeleton {
-    background: linear-gradient(
-        90deg,
-        var(--clr-bg-alt) 0%,
-        var(--clr-bg-card) 50%,
-        var(--clr-bg-alt) 100%
-    );
+    background: linear-gradient(90deg,
+            var(--clr-bg-alt) 0%,
+            var(--clr-bg-card) 50%,
+            var(--clr-bg-alt) 100%);
     background-size: 200% 100%;
     animation: skeleton-loading 1.5s ease-in-out infinite;
 }
@@ -3370,6 +3466,7 @@ img {
     0% {
         background-position: 200% 0;
     }
+
     100% {
         background-position: -200% 0;
     }
@@ -3402,6 +3499,7 @@ img {
 
 /* ==================== REDUCED MOTION ==================== */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -3414,6 +3512,7 @@ img {
 
 /* ==================== PRINT STYLES ==================== */
 @media print {
+
     .navbar,
     .back-to-top,
     .theme-toggle,
@@ -3421,7 +3520,7 @@ img {
     #particleCanvas {
         display: none !important;
     }
-    
+
     body {
         background: white;
         color: black;
@@ -3434,7 +3533,7 @@ img {
         --clr-border: rgba(0, 0, 0, 0.3);
         --clr-border-hover: rgba(0, 0, 0, 0.5);
     }
-    
+
     [data-theme="dark"] {
         --clr-border: rgba(255, 255, 255, 0.3);
         --clr-border-hover: rgba(255, 255, 255, 0.5);
@@ -3452,12 +3551,13 @@ img {
 
 /* ==================== ENHANCED MOBILE ANIMATIONS ==================== */
 @media (max-width: 768px) {
+
     /* Reduce animation complexity on mobile */
     .hero-floating-card,
     .shape {
         animation-duration: 10s;
     }
-    
+
     /* Simplify hover effects */
     .project-card:hover,
     .skill-category:hover {
@@ -3478,6 +3578,7 @@ img {
         opacity: 0;
         transform: translateY(50px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -3515,6 +3616,7 @@ img {
         opacity: 0;
         transform: translateX(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -3527,10 +3629,21 @@ img {
     animation: fadeInUp 0.5s ease-out forwards;
 }
 
-.footer-links ul li:nth-child(1) { animation-delay: 0.5s; }
-.footer-links ul li:nth-child(2) { animation-delay: 0.6s; }
-.footer-links ul li:nth-child(3) { animation-delay: 0.7s; }
-.footer-links ul li:nth-child(4) { animation-delay: 0.8s; }
+.footer-links ul li:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.footer-links ul li:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.footer-links ul li:nth-child(3) {
+    animation-delay: 0.7s;
+}
+
+.footer-links ul li:nth-child(4) {
+    animation-delay: 0.8s;
+}
 
 /* Social links stagger */
 .footer-social-links a {
@@ -3538,15 +3651,24 @@ img {
     animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-.footer-social-links a:nth-child(1) { animation-delay: 0.7s; }
-.footer-social-links a:nth-child(2) { animation-delay: 0.8s; }
-.footer-social-links a:nth-child(3) { animation-delay: 0.9s; }
+.footer-social-links a:nth-child(1) {
+    animation-delay: 0.7s;
+}
+
+.footer-social-links a:nth-child(2) {
+    animation-delay: 0.8s;
+}
+
+.footer-social-links a:nth-child(3) {
+    animation-delay: 0.9s;
+}
 
 @keyframes scaleIn {
     from {
         opacity: 0;
         transform: scale(0);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
@@ -3613,16 +3735,16 @@ img {
         top: -50px;
         height: 50px;
     }
-    
+
     .footer-links ul {
         animation: none;
     }
-    
+
     .footer-links ul li {
         animation: none;
         opacity: 1;
     }
-    
+
     .footer-social-links a {
         animation: none;
         opacity: 1;
@@ -3631,9 +3753,12 @@ img {
 
 /* Coffee cup animation */
 @keyframes coffeeStream {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0.7;
     }
+
     50% {
         opacity: 1;
         transform: translateY(-2px);
@@ -3648,6 +3773,7 @@ img {
 
 /* Disable footer animations on reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
     .footer,
     .footer-brand,
     .footer-links,
